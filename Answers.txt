@@ -1,0 +1,39 @@
+1) Explain the difference between an abstract class and an interface
+a. Typically, when we talk about abstract class we extend that but in the case of interface we implement it. The reason
+   is that the abstract class has methods where not all of them are defined so we extend it and add our own logic for
+   the methods whereas in interface we just define the method signature so that while we implement them in the child
+   class they follow the strict rules.
+
+
+2) What is the purpose of getters and setters in a class
+a. The getter and setter method are very useful for helper classes where we want to share some common data across the platform.
+   Example: a database connection, which can be initialize through the class constructor and later we can use getter to retrieve that connection.
+   In case, if we need to change this database connection dynamically then we can also implement a setter function to set the previously initialized database connection.
+   The getter/setter also facilitates the calling function to avoid accidental changing of data because the data is bound to access from getter and setter methods only.
+
+3) Explain the purpose of black box testing
+a. The purpose of black box testing is to figure out the application performance based on how quickly it respond to the given input,
+   how capable it is to handle the load/stress, how proficient it is on managing complex input and still maintaining its throughput.
+   In case of backend terminology, we can better understand this as a testing the functionality of endpoint and analyzing how it respond on varying inputs.
+
+4) In your opinion what are the benefits of test cases
+I have listed the benefits on descending order of the most useful benefits:
+- Maintains the code consistency while adding a feature or fixing a bug
+- Helo in evaluating the system performance at some level
+- Saves time in code review as reviewer can know major areas that has been affected by just looking at the test case
+- Supports test driven development in case of complex requirements
+- Help in code refactoring, Example: we want to replace a library with another library.
+
+5) What is an error first callback, and what is the reason for this pattern existing?
+a. In callback code architecture we send/expect error object on the first parameter of the callback function, such callback function is called error first callback.
+   The main reason I think for this pattern is that we can always expect at least one parameter in the callback function and make the remaining parameters as a default parameters.
+   Also, based on the programming practices it is always good to handle the error at the begining so we expect that as a first parameter in callback function.
+   This pattern is also useful as now we know that we need to send error on first param so the called function can simply send null or undefined as a first parameter of the callback while acknowledging it,
+   without passing other callback parameters, in case of error.
+
+6) Explain the difference between fs.readSync and fs.read (File System module in Nodejs). What tasks do you feel should be done asynchronously?
+a. The fs.readSync will read the file synchronously from the storage. Unlike, fs.reasSync the fs.read will read asynchronously from the storage.
+   It is always better to use the async function while reading the file because node is a single threaded system and we do not want to block the event loop in long read operation.
+   So, if the read operation will take a long time or we want to read some content from third party services
+   then asynchronous file read operation is the best since we also get a callback which can be used further for proper error handling.
+
